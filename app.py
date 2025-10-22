@@ -3,7 +3,7 @@ import pandas as pd
 from openpyxl import load_workbook
 import io
 
-st.title("メニュー名・ポイント・媒体名の上書きツール")
+st.title("メニュー名上書きツール")
 
 uploaded_menu_file = st.file_uploader("メニュー名変更依頼ファイルをアップロード", type="xlsx")
 uploaded_code_file = st.file_uploader("媒体コード発番依頼ファイルをアップロード", type="xlsx")
