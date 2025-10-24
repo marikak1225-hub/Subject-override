@@ -76,4 +76,3 @@ if uploaded_menu_file and uploaded_code_file:
             file_name="更新済み_媒体コード発番依頼.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-``
