@@ -4,10 +4,10 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 import io
 
-st.title("メニュー名上書きツール")
+st.title("メニュー名・ポイント・媒体名の上書きツール（プレビュー＆ローズ色塗りつぶし）")
 
-uploaded_menu_file = st.file_uploader("メニュー名変更依頼ファイルをアップロード（パスワード解除して）", type="xlsx")
-uploaded_code_file = st.file_uploader("媒体コード発番依頼ファイルをアップロード（パスワード解除して）", type="xlsx")
+uploaded_menu_file = st.file_uploader("メニュー名変更依頼ファイルをアップロード", type="xlsx")
+uploaded_code_file = st.file_uploader("媒体コード発番依頼ファイルをアップロード", type="xlsx")
 
 if uploaded_menu_file and uploaded_code_file:
     menu_wb = load_workbook(uploaded_menu_file)
@@ -51,22 +51,22 @@ if uploaded_menu_file and uploaded_code_file:
         st.dataframe(pd.DataFrame(preview_rows))
 
     if st.button("上書き実行"):
-        yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+        rose_fill = PatternFill(start_color="FF66CC", end_color="FF66CC", fill_type="solid")
         updated_count = 0
         for row in code_ws.iter_rows(min_row=2):
             target_code = row[1].value  # B列
             for m_code, m_name, m_point, m_media_name in menu_data:
                 if target_code == m_code:
                     row[2].value = m_name       # C列
-                    row[2].fill = yellow_fill
+                    row[2].fill = rose_fill
                     row[4].value = m_point      # E列
-                    row[4].fill = yellow_fill
+                    row[4].fill = rose_fill
                     row[5].value = m_media_name # F列
                     row[5].fill = rose_fill
                     updated_count += 1
                     break
 
-        st.success(f"{updated_count} 件のセルを更新✨更新セルはピンクです🦩エクスポートして確認してください。")
+        st.success(f"{updated_count} 件の行を更新し、セルにローズ色を適用しました。")
 
         output = io.BytesIO()
         code_wb.save(output)
@@ -76,3 +76,4 @@ if uploaded_menu_file and uploaded_code_file:
             file_name="更新済み_媒体コード発番依頼.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
+``
