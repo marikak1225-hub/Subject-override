@@ -4,10 +4,10 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 import io
 
-st.title("メニュー名・ポイント・媒体名の上書きツール（プレビュー＆ローズ色塗りつぶし）")
+st.title("メニュー名上書きツール")
 
-uploaded_menu_file = st.file_uploader("メニュー名変更依頼ファイルをアップロード", type="xlsx")
-uploaded_code_file = st.file_uploader("媒体コード発番依頼ファイルをアップロード", type="xlsx")
+uploaded_menu_file = st.file_uploader("メニュー名変更依頼ファイルをアップロード（パスワード解除して）", type="xlsx")
+uploaded_code_file = st.file_uploader("媒体コード発番依頼ファイルをアップロード（パスワード解除して）", type="xlsx")
 
 if uploaded_menu_file and uploaded_code_file:
     menu_wb = load_workbook(uploaded_menu_file)
@@ -66,7 +66,7 @@ if uploaded_menu_file and uploaded_code_file:
                     updated_count += 1
                     break
 
-        st.success(f"{updated_count} 件の行を更新し、セルにローズ色を適用しました。")
+        st.success(f"{updated_count} 件の行を更新✨更新セルはピンクです🦩エクスポートして確認してください。")
 
         output = io.BytesIO()
         code_wb.save(output)
