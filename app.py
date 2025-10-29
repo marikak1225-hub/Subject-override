@@ -66,7 +66,7 @@ if uploaded_menu_file and uploaded_code_file:
                     updated_count += 1
                     break
 
-        st.success(f"{updated_count} 件の行を更新✨更新セルはピンクです🦩エクスポートして確認してください。")
+        st.success(f"{updated_count} 件のセルを更新✨更新セルはピンクです🦩エクスポートして確認してください！")
 
         output = io.BytesIO()
         code_wb.save(output)
